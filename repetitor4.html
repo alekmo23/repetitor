@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Профессиональные услуги репетитора по истории. Подготовка к ЕГЭ, ОГЭ, углублённое изучение всемирной истории и истории России.">
+    <meta name="keywords" content="репетитор по истории, подготовка к ЕГЭ, история России, всемирная история, уроки истории">
+    <title>Онлайн-школа истории | Трофимов Матвей</title>
+    <style>
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #D2B48C;
+            --accent-color: #CD853F;
+            --light-bg: #FFF8E7;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            background: var(--light-bg);
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1589652717521-10c0d092dea9?auto=format&fit=crop&w=1920') center/cover;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+
+        .hero-title {
+            font-size: 2.8em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            letter-spacing: 1.5px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5em;
+            margin: 20px 0;
+            color: var(--secondary-color);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            position: relative;
+        }
+
+        .phone-header {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            color: var(--primary-color);
+            font-weight: bold;
+            background: var(--light-bg);
+            padding: 10px 20px;
+            border-radius: 25px;
+        }
+
+        nav {
+            background: var(--primary-color);
+            padding: 15px;
+            margin-bottom: 40px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: background 0.3s ease;
+        }
+
+        nav a:hover {
+            background: var(--accent-color);
+        }
+
+        section {
+            margin-bottom: 50px;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            background: var(--accent-color);
+            border-radius: 5px 0 0 5px;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.8em;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price-card {
+            background: var(--light-bg);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 15px 0;
+            border: 2px solid var(--secondary-color);
+        }
+
+        blockquote {
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2em;
+            }
+            
+            .phone-header {
+                position: static;
+                margin-top: 20px;
+                display: inline-block;
+            }
+            
+            nav {
+                gap: 15px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Новая герой-секция -->
+        <div class="hero-section">
+            <h1 class="hero-title">Онлайн-школа по истории</h1>
+            <h2 class="hero-subtitle">Профессионального репетитора, кандидата исторических наук<br>
+            Трофимова Матвея Артемовича</h2>
+            <p class="hero-subtitle">Подготовка к ЕГЭ-2025 на 80+ баллов</p>
+            <a href="#contacts" class="cta-button">Записаться на пробный урок</a>
+        </div>
+
+        <header>
+            <div class="phone-header">☎ +7 (XXX) XXX-XX-XX</div>
+        </header>
+
+        <nav>
+            <a href="#about">Обо мне</a>
+            <a href="#schedule">Расписание</a>
+            <a href="#prices">Цены</a>
+            <a href="#format">Формат занятий</a>
+            <a href="#faq">FAQ</a>
+            <a href="#reviews">Отзывы</a>
+            <a href="#contacts">Контакты</a>
+        </nav>
+
+        <!-- Секция "Обо мне" -->
+        <section id="about">
+            <h3>📜 Обо мне</h3>
+            <p>Кандидат исторических наук, автор научных публикаций...</p>
+        </section>
+
+        <!-- Остальные секции остаются с улучшенным стилем -->
+        <!-- ... -->
+
+        <footer>
+            <p>© 2023 Трофимов М.А. Все материалы защищены авторским правом</p>
+        </footer>
+    </div>
+</body>
+</html>
