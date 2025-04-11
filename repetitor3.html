@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Подготовка к ЕГЭ по истории 2025 с кандидатом исторических наук Трифимовым М.А. Гарантированный результат 80+ баллов.">
+    <title>Онлайн-школа истории | Трифимов М.А. - Подготовка к ЕГЭ 2025</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2A4B7C;
+            --primary-dark: #1D3557;
+            --accent: #C29B6D;
+            --accent-dark: #A78356;
+            --light: #F8F5F0;
+            --dark: #333333;
+            --gray: #6C757D;
+            --light-gray: #E9ECEF;
+            --white: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-top: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-accent:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* Hero section */
+        .hero {
+            background: linear-gradient(rgba(42,75,124,0.9), rgba(42,75,124,0.9)),
+                        url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            border-bottom: 3px solid var(--accent);
+            position: relative;
+        }
+
+        .badge {
+            background: var(--accent);
+            width: fit-content;
+            margin: 1rem auto;
+            padding: 0.5rem 1.5rem;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            border-radius: 25px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Navigation */
+        .nav-wrap {
+            background: var(--white);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 0.5rem;
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--primary);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Features section */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+            margin: 1rem auto 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 3px solid var(--accent);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .feature-card p {
+            color: var(--gray);
+            margin-bottom: 0;
+        }
+
+        /* Results section */
+        .results-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .result-card {
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+            width: 300px;
+            transition: transform 0.3s ease;
+        }
+
+        .result-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .result-img {
+            height: 200px;
+            background: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+        }
+
+        .result-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .result-info h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .result-score {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        /* Reviews section */
+        .reviews-container {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding: 1rem 0;
+            scroll-snap-type: x mandatory;
+        }
+
+        .review-card {
+            min-width: 300px;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            padding: 2rem;
+            scroll-snap-align: start;
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .review-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--light-gray);
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+        }
+
+        .review-name {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .review-rating {
+            color: var(--accent);
+            margin-top: 0.3rem;
+        }
+
+        .review-text {
+            color: var(--gray);
+            font-style: italic;
+        }
+
+        /* Pricing section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .pricing-card.popular {
+            border: 2px solid var(--accent);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--accent);
+            color: var(--white);
+            padding: 0.3rem 1.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transform: translateY(-50%) rotate(15deg);
+        }
+
+        .pricing-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-price span {
+            font-size: 1rem;
+            color: var(--gray);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 0.5rem 0;
+            color: var(--gray);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .pricing-features li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Contact section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-info {
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            padding: 2rem;
+        }
+
+        .contact-info h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            background: var(--accent);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .contact-text h4 {
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-text p {
+            color: var(--gray);
+        }
+
+        .contact-form {
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* FAQ section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .faq-question:hover {
+            background: rgba(0,0,0,0.02);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: var(--gray);
+        }
+
+        .faq-answer.active {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+
+        .faq-toggle {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-toggle.active {
+            transform: rotate(180deg);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h3 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            padding: 2rem;
+            position: relative;
+            transform: translateY(-50px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            .section {
+                padding: 4rem 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding: 4rem 1rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .features-grid, .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section {
+                padding: 3rem 0;
+            }
+
+            .section-title {
+                margin-bottom: 2rem;
+            }
+
+            .btn {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="badge animate-fade">Кандидат исторических наук</div>
+                <h1 class="animate-fade delay-1">Онлайн-школа истории</h1>
+                <h2 class="animate-fade delay-1" style="font-weight: 400; letter-spacing: 1px;">Трифимова Матвея Артемовича</h2>
+                <p class="animate-fade delay-2" style="font-size: 1.4rem; margin: 2rem 0;">
+                    Гарантированная подготовка к ЕГЭ-2025<br>
+                    <span style="color: var(--accent); font-weight: 700;">на 80+ баллов</span>
+                </p>
+                <div class="animate-fade delay-3" style="display: flex; gap: 1rem; justify-content: center;">
+                    <a href="#prices" class="btn btn-accent">Выбрать курс</a>
+                    <a href="#cta" class="btn btn-outline">Бесплатный урок</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <div class="nav-wrap">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo"><i class="fas fa-book-open"></i> ИсторияЕГЭ</a>
+                <div class="nav-links">
+                    <a href="#format">Формат занятий</a>
+                    <a href="#results">Результаты</a>
+                    <a href="#reviews">Отзывы</a>
+                    <a href="#prices">Стоимость</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="#contacts">Контакты</a>
+                </div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <a href="tel:+74951234567" class="btn btn-primary">+7 (ххх) ххх-хх-хх</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section id="format" class="section">
+        <div class="container">
+            <h2 class="section-title">Наш формат обучения</h2>
+            <div class="features-grid">
+                <div class="feature-card animate-fade">
+                    <h3><i class="fas fa-users" style="margin-right: 0.5rem;"></i> Мини-группы</h3>
+                    <p>3-7 учеников с одинаковым уровнем подготовки. Индивидуальный подход в групповом формате с персональной обратной связью.</p>
+                </div>
+                
+                <div class="feature-card animate-fade delay-1">
+                    <h3><i class="fas fa-clock" style="margin-right: 0.5rem;"></i> Режим занятий</h3>
+                    <p>2 раза в неделю по 120 минут в Zoom. Доступ к записям всех уроков и персональный кабинет с материалами на учебной платформе.</p>
+                </div>
+
+                <div class="feature-card animate-fade delay-2">
+                    <h3><i class="fas fa-calendar-alt" style="margin-right: 0.5rem;"></i> Программа 2025</h3>
+                    <p>Актуализированный курс с учётом последних изменений ФИПИ. Авторские тренажёры экзаменационных заданий и методики запоминания.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results" class="section" style="background: rgba(42,75,124,0.03);">
+        <div class="container">
+            <h2 class="section-title">Наши результаты</h2>
+            <div class="results-container">
+                <div class="result-card animate-fade">
+                    <div class="result-img">
+                        <i class="fas fa-user-graduate" style="font-size: 3rem;"></i>
+                    </div>
+                    <div class="result-info">
+                        <h3>Анна Смирнова</h3>
+                        <p>Москва, школа №125</p>
+                        <div class="result-score">94 балла</div>
+                    </div>
+                </div>
+                <div class="result-card animate-fade delay-1">
+                    <div class="result-img">
+                        <i class="fas fa-user-graduate" style="font-size: 3rem;"></i>
+                    </div>
+                    <div class="result-info">
+                        <h3>Иван Петров</h3>
+                        <p>Санкт-Петербург, лицей №30</p>
+                        <div class="result-score">89 баллов</div>
+                    </div>
+                </div>
+                <div class="result-card animate-fade delay-2">
+                    <div class="result-img">
+                        <i class="fas fa-user-graduate" style="font-size: 3rem;"></i>
+                    </div>
+                    <div class="result-info">
+                        <h3>Екатерина Козлова</h3>
+                        <p>Казань, гимназия №7</p>
+                        <div class="result-score">97 баллов</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="section">
+        <div class="container">
+            <h2 class="section-title">Отзывы учеников</h2>
+            <div class="reviews-container">
+                <div class="review-card animate-fade">
+                    <div class="review-header">
+                        <div class="review-avatar">
+                            <i class="fas fa-user" style="font-size: 1.5rem;"></i>
+                        </div>
+                        <div>
+                            <div class="review-name">Ольга Иванова</div>
+                            <div class="review-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-text">
+                        "Благодаря занятиям с Матвеем Артемовичем я смогла систематизировать все знания по истории. Его методика преподавания просто потрясающая - сложные темы объясняются очень доступно. Результат - 91 балл на ЕГЭ!"
+                    </div>
+                </div>
+                <div class="review-card animate-fade delay-1">
+                    <div class="review-header">
+                        <div class="review-avatar">
+                            <i class="fas fa-user" style="font-size: 1.5rem;"></i>
+                        </div>
+                        <div>
+                            <div class="review-name">Дмитрий Соколов</div>
+                            <div class="review-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-text">
+                        "Занимался в группе у Матвея Артемовича весь 11 класс. Начал с нулевыми знаниями, закончил с 85 баллами! Очень благодарен за четкую структуру занятий и индивидуальный подход, несмотря на групповой формат."
+                    </div>
+                </div>
+                <div class="review-card animate-fade delay-2">
+                    <div class="review-header">
+                        <div class="review-avatar">
+                            <i class="fas fa-user" style="font-size: 1.5rem;"></i>
+                        </div>
+                        <div>
+                            <div class="review-name">Александра Кузнецова</div>
+                            <div class="review-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-text">
+                        "Матвей Артемович - преподаватель от Бога! Его лекции настолько интересные, что история стала моим любимым предметом. Особенно полезны были разборы сложных заданий второй части. В итоге - 93 балла и поступление в МГУ!"
+                    </div>
+                </div>
+                <div class="review-card animate-fade delay-3">
+                    <div class="review-header">
+                        <div class="review-avatar">
+                            <i class="fas fa-user" style="font-size: 1.5rem;"></i>
+                        </div>
+                        <div>
+                            <div class="review-name">Артем Власов</div>
+                            <div class="review-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-text">
+                        "Ходил на курсы к разным преподавателям, но только после занятий с Матвеем Артемовичем все встало на свои места. Его авторские схемы и таблицы - это просто бомба! Сдал на 87 баллов, хотя в школе еле на тройку тянул."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="prices" class="section" style="background: rgba(42,75,124,0.03);">
+        <div class="container">
+            <h2 class="section-title">Стоимость обучения</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card animate-fade">
+                    <h3 class="pricing-title">Базовый</h3>
+                    <div class="pricing-price">8 900 <span>руб/мес</span></div>
+                    <ul class="pricing-features">
+                        <li>16 занятий в месяц</li>
+                        <li>Доступ к материалам</li>
+                        <li>Проверка 5 заданий</li>
+                        <li>Группа 5-7 человек</li>
+                        <li>Записи занятий</li>
+                    </ul>
+                    <a href="#cta" class="btn btn-outline">Выбрать</a>
+                </div>
+                <div class="pricing-card animate-fade delay-1 popular">
+                    <div class="popular-badge">Популярный</div>
+                    <h3 class="pricing-title">Оптимальный</h3>
+                    <div class="pricing-price">12 900 <span>руб/мес</span></div>
+                    <ul class="pricing-features">
+                        <li>16 занятий в месяц</li>
+                        <li>Полный доступ к материалам</li>
+                        <li>Проверка 10 заданий</li>
+                        <li>Группа 3-5 человек</li>
+                        <li>Записи занятий + конспекты</li>
+                        <li>2 пробных ЕГЭ с разбором</li>
+                    </ul>
+                    <a href="#cta" class="btn btn-primary">Выбрать</a>
+                </div>
+                <div class="pricing-card animate-fade delay-2">
+                    <h3 class="pricing-title">Индивидуальный</h3>
+                    <div class="pricing-price">24 900 <span>руб/мес</span></div>
+                    <ul class="pricing-features">
+                        <li>8 индивидуальных занятий</li>
+                        <li>Персональная программа</li>
+                        <li>Проверка всех заданий</li>
+                        <li>Гибкий график</li>
+                        <li>Полный пакет материалов</li>
+                        <li>4 пробных ЕГЭ с разбором</li>
+                        <li>Куратор 24/7</li>
+                    </ul>
+                    <a href="#cta" class="btn btn-outline">Выбрать</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="section" style="padding: 4rem 0; background: var(--primary); color: var(--white); text-align: center;">
+        <div class="container">
+            <h2 class="section-title" style="color: var(--white);">Готовы начать подготовку к ЕГЭ?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+                Запишитесь на бесплатный пробный урок и получите диагностику вашего текущего уровня!
+            </p>
+            <button id="openModalBtn" class="btn btn-accent" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Записаться на пробный урок</button>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section">
+        <div class="container">
+            <h2 class="section-title">Часто задаваемые вопросы</h2>
+            <div class="faq-container">
+                <div class="faq-item animate-fade">
+                    <div class="faq-question">
+                        <span>С какого уровня можно начинать занятия?</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Мы принимаем учеников с любым уровнем подготовки - от нулевого до продвинутого. Перед началом занятий проводим бесплатное тестирование, чтобы определить ваш текущий уровень и подобрать подходящую группу. Даже если вы совсем не знаете историю, наши методики позволят вам достичь высоких результатов.</p>
+                    </div>
+                </div>
+                <div class="faq-item animate-fade delay-1">
+                    <div class="faq-question">
+                        <span>Как проходят онлайн-занятия?</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Занятия проходят в Zoom в режиме реального времени. Каждый урок включает лекционную часть, разбор сложных моментов, интерактивные задания и обсуждения. После занятия вы получаете запись урока, презентацию и дополнительные материалы
