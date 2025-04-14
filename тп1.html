@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>80 лет любви и мудрости</title>
+    <style>
+        /* Основные стили */
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #fff9f2;
+            color: #5a3e36;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .album {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .page {
+            background-color: white;
+            border: 1px solid #e8d5b5;
+            border-radius: 5px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s, transform 0.6s;
+            display: none;
+        }
+        .page.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        h1, h2 {
+            color: #8b4513;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5em;
+            border-bottom: 2px dashed #e8d5b5;
+            padding-bottom: 15px;
+        }
+        .photo {
+            text-align: center;
+            margin: 20px 0;
+            transition: all 0.3s;
+        }
+        .photo:hover {
+            transform: scale(1.02);
+        }
+        .photo img {
+            max-width: 100%;
+            border: 5px solid #f5e8d0;
+            border-radius: 3px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background: white;
+            max-width: 90%;
+            max-height: 90%;
+            overflow: auto;
+            padding: 20px;
+            border-radius: 5px;
+            position: relative;
+        }
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .caption {
+            font-style: italic;
+            margin-top: 10px;
+            color: #7a6a5f;
+        }
+        .family-member {
+            display: inline-block;
+            width: 30%;
+            vertical-align: top;
+            margin: 0 1%;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .family-member:hover {
+            transform: translateY(-5px);
+        }
+        .timeline {
+            border-left: 3px solid #8b4513;
+            padding-left: 20px;
+            margin: 30px 0;
+        }
+        .timeline-event {
+            margin-bottom: 25px;
+            position: relative;
+            padding: 10px;
+            background: rgba(245, 232, 208, 0.3);
+            border-radius: 5px;
+        }
+        .timeline-event:before {
+            content: "";
+            position: absolute;
+            left: -26px;
+            top: 15px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #8b4513;
+        }
+        .footer {
+            text-align: center;
+            font-size: 1.2em;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px dashed #e8d5b5;
+        }
+        #music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 10px;
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 100;
+        }
+        #qr-code {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f5e8d0;
+            border-radius: 5px;
+        }
+        .comment-form {
+            background: #f9f3e9;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+        .comment-form input, 
+        .comment-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #e8d5b5;
+            border-radius: 3px;
+        }
+        .comment-form button {
+            background: #8b4513;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .comment-form button:hover {
+            background: #6b3410;
+        }
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .heart {
+            position: absolute;
+            opacity: 0;
+            animation: float 6s ease-in infinite;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        .comments-list {
+            margin-top: 20px;
+        }
+        .comment {
+            background: #f5e8d0;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            animation: fadeIn 0.5s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .comment-author {
+            font-weight: bold;
+            color: #8b4513;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        .nav-button {
+            background: #8b4513;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .nav-button:hover {
+            background: #6b3410;
+        }
+        .page-counter {
+            text-align: center;
+            margin: 10px 0;
+            color: #8b4513;
+        }
+        .certificate {
+            border: 2px solid #8b4513;
+            padding: 20px;
+            text-align: center;
+            background: #fffaf0;
+            margin: 20px 0;
+        }
+        .tree-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .quiz-option {
+            display: block;
+            margin: 5px 0;
+            padding: 8px;
+            background: #f9f3e9;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .quiz-option:hover {
+            background: #f5e8d0;
+        }
+        .recipe-card {
+            width: 250px;
+            margin: 10px;
+            border: 1px solid #e8d5b5;
+            border-radius: 5px;
+            overflow: hidden;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .recipe-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .tab-button {
+            padding: 10px 20px;
+            background: #f5e8d0;
+            border: none;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+        .tab-button.active {
+            background: #8b4513;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="hearts-container"></div>
+    
+    <div id="music-control" onclick="toggleMusic()">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+            <path fill="#8b4513" d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+        </svg>
+    </div>
+
+    <div class="album">
+        <!-- Титульная страница -->
+        <div class="page active" id="page1">
+            <h1>80 лет любви и мудрости</h1>
+            <div class="photo">
+                <img src="https://via.placeholder.com/800x500/f5e8d0/5a3e36?text=Главное+семейное+фото" alt="Семейное фото" onclick="openModal(this.src, 'Семейное фото')">
+            </div>
+            <p style="text-align: center; font-size: 1.2em;">
+                Дорогая мама, бабушка и прабабушка!<br>
+                Этот альбом - история твоей любви,<br>
+                которая согревает уже четыре поколения.
+            </p>
+            
+            <div id="qr-code"></div>
+
+            <div class="nav-buttons">
+                <button class="nav-button" onclick="nextPage()">Далее →</button>
+            </div>
+        </div>
+
+        <!-- Страница о юбиляре -->
+        <div class="page" id="page2">
+            <h2>Сердце нашей семьи</h2>
+            <div class="photo">
+                <img src="https://via.placeholder.com/600x400/f5e8d0/5a3e36?text=Фото+юбиляра+в+молодости" alt="Молодость" onclick="openModal(this.src, 'Молодые годы')">
+                <div class="caption">Наша прекрасная мама в молодости</div>
+            </div>
+            <p>
+                Ты - наша путеводная звезда. 80 лет мудрости, терпения и бесконечной заботы. 
+                Спасибо за тёплый дом, вкусные пироги и мудрые советы, которые помогают нам 
+                уже много лет.
+            </p>
+
+            <div class="nav-buttons">
+                <button class="nav-button" onclick="prevPage()">← Назад</button>
+                <button class="nav-button" onclick="nextPage()">Далее →</button>
+            </div>
+            <div class="page-counter">Страница 2 из 10</div>
+        </div>
+
+        <!-- Дети -->
+        <div class="page" id="page3">
+            <h2>Твои дети</h2>
+            
+            <div class="family-member">
+                <img src="https://via.placeholder.com/200x200/f5e8d0/5a3e36?text=Дочь+1" alt="Дочь 1" onclick="openModal(this.src, 'Дочь 1')">
+                <p>"Мама, ты научила меня самому главному - быть любящим человеком"</p>
+            </div>
+            
+            <div class="family-member">
+                <img src="https://via.placeholder.com/200x200/f5e8d0/5a3e36?text=Дочь+2" alt="Дочь 2" onclick="openModal(this.src, 'Дочь 2')">
+                <p>"Твоя поддержка всегда со мной, даже когда мы далеко"</p>
+            </div>
+            
+            <div class="family-member">
+                <img src="https://via.placeholder.com/200x200/f5e8d0/5a3e36?text=Сын" alt="Сын" onclick="openModal(this.src, 'Сын')">
+                <p>"Спасибо за твою мудрость и веру в меня"</p>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="nav-button" onclick="prevPage()">← Назад</button>
+                <button class="nav-button" onclick="nextPage()">Далее →</button>
+            </div>
+            <div class="page-counter">Страница 3 из 10</div>
+        </div>
+
+        <!-- Внуки -->
+        <div class="page" id="page4">
+            <h2>Твои внуки</h2>
+            <div class="photo">
+                <img src="https://via.placeholder.com/700x400/f5e8d0/5a3e36?text=Фото+с+внуками" alt="С внуками" onclick="openModal(this.src, 'С внуками')">
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <p>"Бабушка, твои объятия - самые тёплые на свете!"</p>
+                <p>"Спасибо за сказки на ночь и секретные рецепты"</p>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="nav-button" onclick="prevPage()">← Назад</button>
+                <button class="nav-button" onclick="nextPage()">Далее →</button>
+            </div>
+            <div class="page-counter">Страница 4 из 10</div>
+        </div>
+
+        <!-- Правнуки -->
+        <div class="page" id="page5">
+            <h2>Твои правнуки</h2>
+            <div style="text-align: center;">
+                <img src="https://via.placeholder.com/300x300/f5e8d0/5a3e36?text=Правнук+1" style="margin: 10px;" onclick="openModal(this.src, 'Правнук 1')">
+                <img src="https://via.placeholder.com/300x300/f5e8d0/5a3e36?text=Правнук+2" style="margin: 10px;" onclick="openModal(this.src, 'Правнук 2')">
+            </div>
+            <p style="text-align: center; font-style: italic;">
+                "Прабабушка, мы тебя любим! Ты - самое доброе солнышко!"
+            </p>
+
+            <div class="nav-buttons">
+                <button class="nav-button" onclick="prevPage()">← Назад</button>
+                <button class="nav-button" onclick="nextPage()">Далее →</button>
+            </div>
+            <div class="page-counter">Страница 5 из 10</div>
+        </div>
+
+        <!-- Хронология -->
+        <div class="page" id="page6">
+            <h2>Наша семейная история</h2>
+            <div class="timeline">
+                <div class="timeline-event">
+                    <h3>1960</h3>
+                    <p>Молодая и прекрасная - начало большой истории</p>
+                </div>
+                <div class="timeline-event">
+                    <h3>1985</h3>
+                    <p>Первые внуки - новая радость</p>
+                </div>
+                <div class="timeline-event">
+                    <h3>2020</h3>
+                    <p>Появление правнуков - твоя любовь продолжается</p>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="nav-button" onclick="prevPage()">← Назад</button>
+                <button class="nav-button" onclick="nextPage()">Далее →</button>
+            </div>
+            <div class="page-counter">Страница 6 из 10</div>
+        </div>
+
+        <!-- Семейное древо -->
+        <div class="page" id="page7">
+            <h2>Наше семейное древо</h2>
+            <div class="tree-container">
+                <div id="tree-diagram" style="display: inline-block; text-align: left;"></div>
+            </div>
+            <button onclick="editFamilyTree()" style="display: block; margin: 20px auto;">Редактировать древо</button>
+
+            <div class="nav-buttons">
+                <button class="nav-button" onclick="prevPage()">← Назад</button>
+                <button class="nav-button" onclick="nextPage()">Далее →</button>
+            </div>
+            <div class="page-counter">Страница 7 из 10</div>
+        </div>
+
+        <!-- Викторина -->
+        <div class="page" id="page8">
+            <h2>Викторина о нашей бабушке</h2>
+            <div id="quiz-container" style="max-width: 600px; margin: 0 auto;">
+                <div id="quiz-questions"></div>
+                <button id="quiz-submit" onclick="checkQuiz()" style="display: block; margin: 20px auto;">Проверить ответы</button>
+                <div id="quiz-result" style="text-align: center; font-size: 1.2em; margin-top: 20px;"></div>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="nav-button" onclick="prevPage()">← Назад</button>
+                <button class="nav-button" onclick="nextPage()">Далее →</button>
+            </div>
+            <div class="page-counter">Страница 8 из 10</div>
+        </div>
+
+        <!-- Рецепты -->
+        <div class="page" id="page9">
+            <h2>Кулинарная книга бабушки</h2>
+            <div class="tab-buttons">
+                <button class="tab-button active" onclick="openTab('recipes-all')">Все рецепты</button>
+                <button class="tab-button" onclick="openTab('recipes-favorites')">Любимые</button>
+            </div>
+            
+            <div id="recipes-all" class="tab-content active">
+                <div style="text-align: center;">
+                    <div class="recipe-card">
+                        <img src="https://via.placeholder.com/250x150/f5e8d0/5a3e36?text=Пирог">
+                        <div style="padding: 10px;">
+                            <h3 style="margin: 0; color: #8b4513;">Яблочный пирог</h3>
+                            <p style="font-size: 0.9em;">"Готовила каждое воскресенье"</p>
+                            <button onclick="showRecipe(1)" style="width: 100%; margin-top: 10px;">Посмотреть рецепт</button>
+                        </div>
+                    </div>
+                    
+                    <div class="recipe-card">
+                        <img src="https://via.placeholder.com/250x150/f5e8d0/5a3e36?text=Борщ">
+                        <div style="padding: 10px;">
+                            <h3 style="margin: 0; color: #8b4513;">Борщ по-семейному</h3>
+                            <p style="font-size: 0.9em;">"Секретный рецепт"</p>
+                            <button onclick="showRecipe(2)" style="width: 100%; margin-top: 10px;">Посмотреть рецепт</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="recipes-favorites" class="tab-content">
+                <div style="text-align: center;">
+                    <div class="recipe-card">
+                        <img src="https://via.placeholder.com/250x150/f5e8d0/5a3e36?text=Оладьи">
+                        <div style="padding: 10px;">
+                            <h3 style="margin: 0; color: #8b4513;">Оладьи с яблоками</h3>
+                            <p style="font-size: 0.9em;">"Любимые внуками"</p>
+                            <button onclick="showRecipe(3)" style="width: 100%; margin-top: 10px;">Посмотреть рецепт</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="nav-button" onclick="prevPage()">← Назад</button>
+                <button class="nav-button" onclick="nextPage()">Далее →</button>
+            </div>
+            <div class="page-counter">Страница 9 из 10</div>
+        </div>
+
+        <!-- Грамота и комментарии -->
+        <div class="page" id="page10">
+            <div class="tab-buttons">
+                <button class="tab-button active" onclick="openTab('tab-certificate')">Почетная грамота</button>
+                <button class="tab-button" onclick="openTab('tab-comments')">Поздравления</button>
+            </div>
+            
+            <div id="tab-certificate" class="tab-content active">
+                <h2>Почетная грамота</h2>
+                <div class="certificate">
+                    <h3 style="color: #8b4513;">ОФИЦИАЛЬНОЕ ПРИЗНАНИЕ</h3>
+                    <p>Награждается <span id="grandma-name" contenteditable="true" style="font-weight: bold; border-bottom: 1px dashed;">Имя Бабушки</span></p>
+                    <p>в номинации <span style="font-style: italic;">"Самая любимая бабушка на свете"</span></p>
+                    <div style="margin: 30px 0;">
+                        <img src="https://via.placeholder.com/300x200/f5e8d0/5a3e36?text=Место+для+фото" style="max-width: 100%;">
+                    </div>
+                    <p>За бесконечную любовь, терпение и самые вкусные пироги</p>
+                    <div style="display: flex; justify-content: space-between; margin-top: 40px;">
+                        <div>
+                            <p>Дата: <span id="cert-date">__.__.____</span></p>
+                        </div>
+                        <div>
+                            <p>Подписи: <span style="border-top: 1px solid; display: inline-block; width: 150px;"></span></p>
+                        </div>
+                    </div>
+                    <button onclick="printCertificate()" style="margin-top: 20px;">Распечатать грамоту</button>
+                </div>
+            </div>
+            
+            <div id="tab-comments" class="tab-content">
+                <h2>Оставь свой отзыв</h2>
+                <div class="comment-form">
+                    <input type="text" id="name" placeholder="Ваше имя">
+                    <textarea id="comment" rows="4" placeholder="Ваше поздравление или воспоминание"></textarea>
+                    <button onclick="addComment()">Добавить поздравление</button>
+                </div>
+                <div id="comments" class="comments-list"></div>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="nav-button" onclick="prevPage()">← Назад</button>
+                <button class="nav-button" onclick="goToPage(1)">В начало</button>
+            </div>
+            <div class="page-counter">Страница 10 из 10</div>
+        </div>
+    </div>
+
+    <!-- Модальные окна -->
+    <div id="photo-modal" class="modal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <img id="modal-image" style="max-width: 100%;">
+            <p id="modal-caption" style="text-align: center; margin-top: 10px;"></p>
+        </div>
+    </div>
+
+    <div id="recipe-modal" class="modal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div id="recipe-content"></div>
+        </div>
+    </div>
+
+    <div id="tree-modal" class="modal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2>Редактировать семейное древо</h2>
+            <div id="tree-editor"></div>
+            <button onclick="saveFamilyTree()" style="margin-top: 20px;">Сохранить</button>
+        </div>
+    </div>
+
+    <!-- Аудио -->
+    <audio id="background-music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио элемент.
+    </audio>
+
+    <script>
+        // Текущая страница
+        let currentPage = 1;
+        const totalPages = 10;
+
+        // Музыка
+        const music = document.getElementById('background-music');
+        let isPlaying = false;
+        
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                isPlaying = false;
+            } else {
+                music.play().catch(e => console.log("Автовоспроизведение заблокировано"));
+                isPlaying = true;
+            }
+        }
+        
+        // Генерация QR-кода
+        function generateQRCode() {
+            const canvas = document.createElement('canvas');
+            const qrContainer = document.getElementById('qr-code');
+            qrContainer.innerHTML = '';
+            qrContainer.appendChild(canvas);
+            
+            // Простая реализация QR-кода без библиотеки
+            const text = "https://example.com/family-video";
+            const size = 150;
+            const margin = 10;
+            
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            
+            // Очищаем canvas
+            ctx.fillStyle = '#f5e8d0';
+            ctx.fillRect(0, 0, size, size);
+            
+            // Простой QR-код (упрощенный вариант)
+            ctx.fillStyle = '#8b4513';
+            const cellSize = (size - margin * 2) / 21;
+            
+            // Внешние квадраты
+            ctx.fillRect(margin, margin, 7*cellSize, 7*cellSize);
+            ctx.fillRect(size - margin - 7*cellSize, margin, 7*cellSize, 7*cellSize);
+            ctx.fillRect(margin, size - margin - 7*cellSize, 7*cellSize, 7*cellSize);
+            
+            // Внутренние квадраты
+            ctx.fillStyle = '#f5e8d0';
+            ctx.fillRect(margin + cellSize, margin + cellSize, 5*cellSize, 5*cellSize);
+            ctx.fillRect(size - margin - 6*cellSize, margin + cellSize, 5*cellSize, 5*cellSize);
+            ctx.fillRect(margin + cellSize, size - margin - 6*cellSize, 5*cellSize, 5*cellSize);
+            
+            // Точки данных (упрощенно)
+            ctx.fillStyle = '#8b4513';
+            for (let i = 0; i < text.length; i++) {
+                const x = margin + (i % 19) * cellSize;
+                const y = margin + Math.floor(i / 19) * cellSize;
+                if (x > margin + 7*cellSize || y > margin + 7*cellSize) {
+                    if (x < size - margin - 7*cellSize || y < size - margin - 7*cellSize) {
+                        ctx.fillRect(x, y, cellSize, cellSize);
+                    }
+                }
+            }
+            
+            // Добавляем текст под QR-кодом
+            const textElement = document.createElement('p');
+            textElement.textContent = "Наведите камеру, чтобы посмотреть видео";
+            textElement.style.marginTop = "10px";
+            textElement.style.fontSize = "0.9em";
+            qrContainer.appendChild(textElement);
+        }
+        
+        // Плавающие сердечки
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            const colors = ['#ffb6c1', '#ff69b4', '#ff1493', '#db7093'];
+            
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤';
+                heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                heart.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(heart);
+            }
+        }
+        
+        // Комментарии
+        function addComment() {
+            const name = document.getElementById('name').value;
+            const comment = document.getElementById('comment').value;
+            
+            if (name && comment) {
+                const commentsDiv = document.getElementById('comments');
+                const newComment = document.createElement('div');
+                newComment.className = 'comment';
+                newComment.innerHTML = `
+                    <div class="comment-author">${name}:</div>
+                    <div>${comment}</div>
+                    <div style="text-align: right; font-size: 0.8em; color: #7a6a5f;">
+                        ${new Date().toLocaleString()}
+                    </div>
+                `;
+                commentsDiv.prepend(newComment);
+                
+                // Очищаем поля
+                document.getElementById('name').value = '';
+                document.getElementById('comment').value = '';
+                
+                // Сохраняем в localStorage
+                saveComments();
+            } else {
+                alert('Пожалуйста, заполните все поля!');
+            }
+        }
+        
+        function saveComments() {
+            const comments = [];
+            document.querySelectorAll('.comment').forEach(comment => {
+                comments.push(comment.innerHTML);
+            });
+            localStorage.setItem('familyAlbumComments', JSON.stringify(comments));
+        }
+        
+        function loadComments() {
+            const savedComments = localStorage.getItem('familyAlbumComments');
+            if (savedComments) {
+                const comments = JSON.parse(savedComments);
+                const commentsDiv = document.getElementById('comments');
+                comments.forEach(comment => {
+                    const newComment = document.createElement('div');
+                    newComment.className = 'comment';
+                    newComment.innerHTML = comment;
+                    commentsDiv.appendChild(newComment);
+                });
+            }
+        }
+        
+        // Модальные окна
+        function openModal(src, caption) {
+            const modal = document.getElementById('photo-modal');
+            const modalImg = document.getElementById('modal-image');
+            const modalCaption = document.getElementById('modal-caption');
+            
+            modal.style.display = 'flex';
+            modalImg.src = src;
+            modalCaption.textContent = caption || '';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.style.display = 'none';
+            });
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Навигация по страницам
+        function goToPage(pageNum) {
+            if (pageNum < 1 || pageNum > totalPages) return;
+            
+            document.querySelector(`.page.active`).classList.remove('active');
+            currentPage = pageNum;
+            document.getElementById(`page${currentPage}`).classList.add('active');
+            
+            // Прокрутка вверх
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            
+            // Обновляем счетчик страниц
+            updatePageCounter();
+        }
+        
+        function nextPage() {
+            goToPage(currentPage + 1);
+        }
+        
+        function prevPage() {
+            goToPage(currentPage - 1);
+        }
+        
+        function updatePageCounter() {
+            document.querySelectorAll('.page-counter').forEach(counter => {
+                if (currentPage === 1 || currentPage === totalPages) {
+                    counter.style.display = 'none';
+                } else {
+                    counter.style.display = 'block';
+                    counter.textContent = `Страница ${currentPage} из ${totalPages}`;
+                }
+            });
+        }
+        
+        // Вкладки
+        function openTab(tabId) {
+            // Скрыть все вкладки
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Убрать активность у всех кнопок
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Показать выбранную вкладку
+            document.getElementById(tabId).classList.add('active');
+            
+            // Активировать кнопку
+            event.currentTarget.classList.add('active');
+        }
+        
+        // Семейное древо
+        function drawFamilyTree() {
+            const container = document.getElementById('tree-diagram');
+            container.innerHTML = '';
+            
+            // Пример данных
+            const treeData = {
+                name: "Имя Бабушки",
+                birthYear: "1943",
+                photo: "https://via.placeholder.com/50/f5e8d0/5a3e36?text=Б",
+                children: [
+                    {
+                        name: "Дочь 1",
+                        birthYear: "1965",
+                        photo: "https://via.placeholder.com/50/f5e8d0/5a3e36?text=Д1",
+                        children: [
+                            {name: "Внук 1", birthYear: "1990", photo: "https://via.placeholder.com/50/f5e8d0/5a3e36?text=В1"},
+                            {name: "Внук 2", birthYear: "1992", photo: "https://via.placeholder.com/50/f5e8d0/5a3e36?text=В2"}
+                        ]
+                    },
+                    {
+                        name: "Сын",
+                        birthYear: "1968",
+                        photo: "https://via.placeholder.com/50/f5e8d0/5a3e36?text=С",
+                        children: [
+                            {name: "Внук 3", birthYear: "1995", photo: "https://via.placeholder.com/50/f5e8d0/5a3e36?text=В3"}
+                        ]
+                    }
+                ]
+            };
+            
+            // Рекурсивная отрисовка
+            function drawNode(node, level = 0) {
+                const nodeDiv = document.createElement('div');
+                nodeDiv.style.marginLeft = level * 30 + 'px';
+                nodeDiv.style.marginBottom = '10px';
+                nodeDiv.style.padding = '5px';
+                nodeDiv.style.borderLeft = level > 0 ? '2px solid #8b4513' : 'none';
+                
+                const content = document.createElement('div');
+                content.style.display = 'flex';
+                content.style.alignItems = 'center';
+                
+                const img = document.createElement('img');
+                img.src = node.photo;
+                img.style.width = '40px';
+                img.style.height = '40px';
+                img.style.borderRadius = '50%';
+                img.style.marginRight = '10px';
+                img.style.objectFit = 'cover';
+                img.style.border = '2px solid #8b4513';
+                
+                const info = document.createElement('div');
+                info.innerHTML = `<strong>${node.name}</strong> (${node.birthYear})`;
+                
+                content.appendChild(img);
+                content.appendChild(info);
+                nodeDiv.appendChild(content);
+                container.appendChild(nodeDiv);
+                
+                if (node.children) {
+                    node.children.forEach(child => {
+                        drawNode(child, level + 1);
+                    });
+                }
+            }
+            
+            drawNode(treeData);
+        }
+        
+        function editFamilyTree() {
+            document.getElementById('tree-modal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            const editor = document.getElementById('tree-editor');
+            editor.innerHTML = `
+                <p>Здесь будет редактор семейного древа</p>
+                <p>В полной версии можно добавлять, удалять и редактировать членов семьи</p>
+            `;
+        }
+        
+        function saveFamilyTree() {
+            alert("Изменения сохранены!");
+            closeModal();
+        }
+        
+        // Викторина
+        const quizQuestions = [
+            {
+                question: "В каком году родилась наша бабушка?",
+                options: ["1940", "1943", "1945", "1950"],
+                answer: 1
+            },
+            {
+                question: "Какое было её любимое блюдо в молодости?",
+                options: ["Борщ", "Пироги", "Оладьи", "Гречневая каша"],
+                answer: 2
+            },
+            {
+                question: "Сколько внуков у бабушки?",
+                options: ["3", "4", "5", "6"],
+                answer: 2
+            }
+        ];
+        
+        function loadQuiz() {
+            const container = document.getElementById('quiz-questions');
+            container.innerHTML = '';
+            
+            quizQuestions.forEach((q, i) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.style.marginBottom = '20px';
+                questionDiv.style.padding = '10px';
+                questionDiv.style.background = '#f9f3e9';
+                questionDiv.style.borderRadius = '5px';
+                
+                questionDiv.innerHTML = `
+                    <p style="font-weight: bold;">${i+1}. ${q.question}</p>
+                    ${q.options.map((opt, j) => `
+                        <div class="quiz-option" onclick="selectAnswer(this, ${i}, ${j})">
+                            ${opt}
+                        </div>
+                    `).join('')}
+                `;
+                
+                container.appendChild(questionDiv);
+            });
+        }
+        
+        function selectAnswer(element, questionIndex, answerIndex) {
+            // Снимаем выделение с других вариантов
+            element.parentNode.querySelectorAll('.quiz-option').forEach(opt => {
+                opt.style.background = '#f9f3e9';
+            });
+            
+            // Выделяем выбранный вариант
+            element.style.background = '#f5e8d0';
+            
+            // Сохраняем выбор
+            quizQuestions[questionIndex].selected = answerIndex;
+        }
+        
+        function checkQuiz() {
+            let score = 0;
+            const resultDiv = document.getElementById('quiz-result');
+            
+            quizQuestions.forEach((q, i) => {
+                if (typeof q.selected !== 'undefined' && q.selected === q.answer) {
+                    score++;
+                }
+            });
+            
+            const percentage = Math.round(score / quizQuestions.length * 100);
+            let message = '';
+            
+            if (percentage >= 80) {
+                message = `Поздравляем! Вы набрали ${percentage}% - вы отлично знаете нашу бабушку!`;
+            } else if (percentage >= 50) {
+                message = `Неплохо! ${percentage}% - но есть куда стремиться!`;
+            } else {
+                message = `Всего ${percentage}%... Вам нужно больше общаться с бабушкой!`;
+            }
+            
+            resultDiv.innerHTML = `
+                <p>${message}</p>
+                <p>Правильных ответов: ${score} из ${quizQuestions.length}</p>
+                <button onclick="loadQuiz()" style="margin-top: 10px;">Попробовать ещё раз</button>
+            `;
+        }
+        
+        // Рецепты
+        const recipes = {
+            1: {
+                title: "Яблочный пирог",
+                image: "https://via.placeholder.com/600x300/f5e8d0/5a3e36?text=Яблочный+пирог",
+                ingredients: [
+                    "2 стакана муки",
+                    "3 яйца",
+                    "1 стакан сахара",
+                    "5-6 яблок",
+                    "1 ч.л. соды",
+                    "щепотка соли"
+                ],
+                instructions: [
+                    "Яблоки очистить и нарезать дольками",
+                    "Взбить яйца с сахаром",
+                    "Добавить муку, соду и соль, замесить тесто",
+                    "Выложить яблоки в форму, залить тестом",
+                    "Выпекать при 180°C 40-45 минут"
+                ],
+                notes: "Подавать со сметаной или мороженым. Бабушка всегда добавляла корицу для аромата."
+            },
+            2: {
+                title: "Борщ по-семейному",
+                image: "https://via.placeholder.com/600x300/f5e8d0/5a3e36?text=Борщ",
+                ingredients: [
+                    "500 г говядины",
+                    "3 свеклы",
+                    "2 картофелины",
+                    "1 морковь",
+                    "1 луковица",
+                    "3 ст.л. томатной пасты",
+                    "специи по вкусу"
+                ],
+                instructions: [
+                    "Мясо варить 1.5 часа",
+                    "Добавить нарезанный картофель",
+                    "Отдельно обжарить лук, морковь и свеклу",
+                    "Добавить томатную пасту и тушить 10 минут",
+                    "Соединить все ингредиенты, варить еще 15 минут"
+                ],
+                notes: "Настоящий борщ должен настояться хотя бы 2 часа перед подачей. Бабушка всегда добавляла немного сахара для баланса вкуса."
+            },
+            3: {
+                title: "Оладьи с яблоками",
+                image: "https://via.placeholder.com/600x300/f5e8d0/5a3e36?text=Оладьи",
+                ingredients: [
+                    "2 стакана муки",
+                    "1 стакан кефира",
+                    "2 яйца",
+                    "2 яблока",
+                    "2 ст.л. сахара",
+                    "щепотка соли"
+                ],
+                instructions: [
+                    "Яблоки натереть на крупной терке",
+                    "Смешать все ингредиенты",
+                    "Жарить на среднем огне до золотистой корочки",
+                    "Подавать со сметаной или вареньем"
+                ],
+                notes: "Любимый завтрак внуков по выходным. Бабушка всегда делала их особенно пышными."
+            }
+        };
+        
+        function showRecipe(id) {
+            const recipe = recipes[id];
+            const content = document.getElementById('recipe-content');
+            
+            content.innerHTML = `
+                <h2 style="color: #8b4513; text-align: center;">${recipe.title}</h2>
+                <img src="${recipe.image}" style="max-width: 100%; display: block; margin: 0 auto 20px;">
+                
+                <h3>Ингредиенты:</h3>
+                <ul>
+                    ${recipe.ingredients.map(i => `<li>${i}</li>`).join('')}
+                </ul>
+                
+                <h3>Способ приготовления:</h3>
+                <ol>
+                    ${recipe.instructions.map(i => `<li>${i}</li>`).join('')}
+                </ol>
+                
+                <p><strong>Секрет бабушки:</strong> ${recipe.notes}</p>
+                
+                <button onclick="closeModal()" style="display: block; margin: 20px auto;">Закрыть</button>
+            `;
+            
+            document.getElementById('recipe-modal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Грамота
+        function printCertificate() {
+            const certContent = document.querySelector('.certificate').innerHTML;
+            const originalContent = document.body.innerHTML;
+            
+            document.body.innerHTML = `
+                <style>
+                    body { font-family: Georgia; padding: 20px; }
+                    @media print {
+                        button { display: none; }
+                    }
+                </style>
+                ${certContent}
+                <button onclick="window.location.reload()" style="display: block; margin: 20px auto;">Вернуться в альбом</button>
+            `;
+            
+            window.print();
+            document.body.innerHTML = originalContent;
+        }
+        
+        // Инициализация
+        window.onload = function() {
+            createHearts();
+            generateQRCode();
+            loadComments();
+            drawFamilyTree();
+            loadQuiz();
+            
+            // Устанавливаем текущую дату в грамоте
+            document.getElementById('cert-date').textContent = new Date().toLocaleDateString();
+            
+            // Показываем первую страницу
+            goToPage(1);
+            
+            // Закрытие модальных окон
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeModal();
+                    }
+                });
+            });
+            
+            // Закрытие по ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+            });
+        };
+    </script>
+</body>
+</html>
