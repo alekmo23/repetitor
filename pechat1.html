@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Запись на занятия</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Marck+Script&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #f5e7d5 url('https://img.freepik.com/free-photo/old-paper-texture_1194-5415.jpg') center/cover;
+            font-family: 'Marck Script', cursive;
+            overflow-y: auto; /* Добавляем прокрутку если контент не помещается */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Изменено с center на flex-start */
+            perspective: 1000px;
+        }
+
+        .scroll-container {
+            position: relative;
+            width: 95%;
+            max-width: 700px; /* Уменьшил максимальную ширину */
+            margin: 40px 0;
+            transition: all 1.5s ease-in-out;
+        }
+
+        .scroll {
+            background: url('file:///D:/Матвей/images/svitok.png') center/100% 100% no-repeat;
+            background-size: cover;
+            padding: 12% 8%; /* Адаптивные отступы в % */
+            text-align: center;
+            color: #3a281d;
+            font-size: clamp(18px, 2vw, 24px); /* Адаптивный размер шрифта */
+            position: relative;
+            z-index: 1;
+            min-height: 400px; /* Уменьшенная минимальная высота */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: clamp(28px, 4vw, 42px); /* Адаптивный заголовок */
+            margin-bottom: 3vh;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .form-group {
+            margin-bottom: 2vh;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 1vh;
+            font-size: clamp(20px, 2.5vw, 26px);
+        }
+
+        input, select, textarea {
+            background: rgba(255,255,255,0.7);
+            border: 1px solid #8b5a2b;
+            border-radius: 4px;
+            padding: 8px 12px;
+            font-size: clamp(16px, 2vw, 20px);
+            font-family: 'Marck Script', cursive;
+            width: 90%;
+            max-width: 350px; /* Уменьшенная максимальная ширина */
+            box-sizing: border-box;
+        }
+
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        button {
+            background: #8b5a2b;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-size: clamp(18px, 2.5vw, 24px);
+            font-family: 'Marck Script', cursive;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 2vh;
+            transition: all 0.3s;
+        }
+
+        /* Остальные стили остаются без изменений */
+        .seal {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: url('https://i.imgur.com/5XJQZ9L.png') center/contain no-repeat;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            opacity: 0;
+            z-index: 2;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .scroll-rolled {
+            transform: rotateX(90deg) translateY(200px);
+            opacity: 0;
+        }
+
+        .seal-visible {
+            transform: translateX(-50%) scale(1);
+            opacity: 1;
+        }
+
+        .ink-spot {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: url('https://i.imgur.com/QZJQZ9L.png') center/contain no-repeat;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            z-index: 3;
+        }
+
+        .ink-spot-visible {
+            animation: inkAppear 1s forwards;
+        }
+
+        @keyframes inkAppear {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+        .redirect-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: clamp(18px, 3vw, 24px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1s;
+            z-index: 10;
+            text-align: center;
+            max-width: 90%;
+        }
+
+        .visible {
+            opacity: 1;
+        }
+
+        @media (max-width: 600px) {
+            .scroll {
+                padding: 15% 5%;
+                min-height: 350px;
+            }
+            
+            input, select, textarea {
+                width: 95%;
+                max-width: none;
+            }
+            
+            .seal {
+                width: 80px;
+                height: 80px;
+                bottom: -40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container" id="scrollContainer">
+        <div class="scroll" id="scroll">
+            <h1>Запись на занятия</h1>
+            
+            <div class="form-group">
+                <label for="name">Ваше имя:</label>
+                <input type="text" id="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="subject">Предмет:</label>
+                <select id="subject" required>
+                    <option value="">-- Выберите предмет --</option>
+                    <option value="history">История</option>
+                    <option value="biology">Биология</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Контактный телефон:</label>
+                <input type="tel" id="phone" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Ваше сообщение:</label>
+                <textarea id="message" placeholder="Опишите ваши пожелания или вопросы..."></textarea>
+            </div>
+            
+            <button id="submitBtn">Запечатать свиток</button>
+        </div>
+        
+        <div class="seal" id="seal"></div>
+        <div class="ink-spot" id="inkSpot"></div>
+    </div>
+    
+    <div class="redirect-message" id="redirectMessage">
+        Ваша заявка принята! Возвращаем вас в главный зал знаний...
+    </div>
+
+    <script>
+        document.getElementById('submitBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Проверка заполнения обязательных полей
+            const name = document.getElementById('name').value;
+            const subject = document.getElementById('subject').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+            
+            if (!name || !subject || !phone) {
+                alert('Пожалуйста, заполните обязательные поля свитка!');
+                return;
+            }
+            
+            // Анимация сворачивания свитка
+            document.getElementById('scrollContainer').classList.add('scroll-rolled');
+            
+            // Показываем чернильное пятно
+            document.getElementById('inkSpot').classList.add('ink-spot-visible');
+            
+            // Через 1.5 секунды показываем печать
+            setTimeout(() => {
+                document.getElementById('seal').classList.add('seal-visible');
+                
+                // Через еще 1 секунду показываем сообщение о перенаправлении
+                setTimeout(() => {
+                    document.getElementById('redirectMessage').classList.add('visible');
+                    
+                    // Через 2 секунды перенаправляем на главную страницу
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 2000);
+                }, 1000);
+            }, 1500);
+            
+            // Здесь можно добавить отправку данных формы на сервер
+            console.log('Отправка данных:', { 
+                name, 
+                subject, 
+                phone,
+                message 
+            });
+        });
+    </script>
+</body>
+</html>
