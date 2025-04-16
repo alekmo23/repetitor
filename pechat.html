@@ -12,11 +12,11 @@
             padding: 0;
             background: #f5e7d5 url('images/table.jpg') center/cover;
             font-family: 'Marck Script', cursive;
-            overflow: hidden;
+            overflow-y: auto;
             height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             perspective: 1000px;
         }
 
@@ -28,14 +28,14 @@
         }
 
         .scroll {
-            background: url('file:///D:/Матвей/images/svitok.png') center/100% 100% no-repeat;
+            background: url('images/svitok.png') center/100% 100% no-repeat;
             padding: 80px 60px;
             text-align: center;
             color: #3a281d;
             font-size: 24px;
             position: relative;
             z-index: 1;
-            min-height: 600px;
+            min-height: 400px; /* Увеличил высоту для нового поля */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -43,12 +43,12 @@
 
         h1 {
             font-size: 42px;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
 
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 5px;
         }
 
         label {
@@ -68,11 +68,11 @@
             max-width: 400px;
         }
 
-		textarea {
-            min-height: 100px;
+        textarea {
+            min-height: 40px;
             resize: vertical;
         }
-		  
+
         button {
             background: #8b5a2b;
             color: white;
@@ -95,7 +95,7 @@
             position: absolute;
             width: 120px;
             height: 120px;
-            background: url('https://i.imgur.com/5XJQZ9L.png') center/contain no-repeat;
+            background: url('images/pechat.png') center/contain no-repeat;
             bottom: -60px;
             left: 50%;
             transform: translateX(-50%) scale(0);
@@ -118,7 +118,7 @@
             position: absolute;
             width: 100px;
             height: 100px;
-            background: url('https://i.imgur.com/QZJQZ9L.png') center/contain no-repeat;
+            background: url('images/ink-spot.png') center/contain no-repeat;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(0);
@@ -175,12 +175,13 @@
                     <option value="history-ege">История (ЕГЭ)</option>
                     <option value="biology">Биология (ОГЭ)</option>
                     <option value="biology-ege">Биология (ЕГЭ)</option>
-                </select>
-            </div>
+				</select>
+            </div>          
             <div class="form-group">
                 <label for="phone">Контактный телефон:</label>
                 <input type="tel" id="phone" required>
             </div>
+
             <div class="form-group">
                 <label for="message">Ваше сообщение:</label>
                 <textarea id="message" placeholder="Опишите ваши пожелания или вопросы..."></textarea>
@@ -201,14 +202,14 @@
         document.getElementById('submitBtn').addEventListener('click', function(e) {
             e.preventDefault();
             
-            // Проверка заполнения формы
+            // Проверка заполнения обязательных полей
             const name = document.getElementById('name').value;
             const subject = document.getElementById('subject').value;
             const phone = document.getElementById('phone').value;
-			const message = document.getElementById('message').value;														 
+            const message = document.getElementById('message').value;
             
             if (!name || !subject || !phone) {
-                alert('Пожалуйста, заполните все поля свитка!');
+                alert('Пожалуйста, заполните обязательные поля свитка!');
                 return;
             }
             
@@ -228,7 +229,7 @@
                     
                     // Через 2 секунды перенаправляем на главную страницу
                     setTimeout(() => {
-                        window.location.href = 'repetitor1.html'; // Замените на вашу главную страницу
+                        window.location.href = 'index.html';
                     }, 2000);
                 }, 1000);
             }, 1500);
@@ -240,7 +241,7 @@
                 phone,
                 message 
             });
-		});
+        });
     </script>
 </body>
 </html>
